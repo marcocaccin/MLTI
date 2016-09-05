@@ -13,7 +13,7 @@ at.set_constraint(other_constraints + [fix_dist])
 
 
 init_temp = 300.
-temperature_step = (params.sim_T - init_temp) / n_steps
+temperature_step = (params.sim_T - init_temp) / params.n_steps
 def temperature_break(at, dynamics):
     KinEng = at.get_kinetic_energy()
     n_steps = dynamics.get_number_of_steps()
@@ -35,13 +35,13 @@ dynamics.attach(temperature_break, 12,
                 dynamics) # Print MD info on screen
 
 # Run dynamics at constant reaction coordinate to equilibrate system
-dynamics.run(n_steps)
+dynamics.run(params.n_steps)
 
 # remove temperature_break call
 del dynamics.observers[-1]
 
 # Run dynamics at constant reaction coordinate to equilibrate system
-dynamics.run(n_steps)
+dynamics.run(params.n_steps)
 
 
 at.write('crack-300K.xyz')

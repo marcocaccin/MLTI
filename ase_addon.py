@@ -33,8 +33,10 @@ class GentlyDriftBondLength(FixConstraint):
         direction, _ = find_mic(np.array([p2 - p1]), atoms._cell, pbc=False)
         direction = direction[0]                                                       
         direction[2] = 0.
-        direction /= np.linalg.norm(direction)
+        distance = np.linalg.norm(direction)
+        direction /= distance
         self.direction = direction
+        self.distance = distance
         
     def adjust_positions(self, atoms, new):
         p1, p2 = atoms.positions[self.indices]

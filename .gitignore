@@ -3,3 +3,5 @@
 md-*.xyz
 *.pyc
 *.sh
+clusters*.xyz
+*_ring.csv
