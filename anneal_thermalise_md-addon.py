@@ -32,7 +32,7 @@ if params.warm_start_file is not None:
     
 dynamics.attach(temperature_break, 12,
                 at,
-                dynamics) # Print MD info on screen
+                dynamics)
 
 # Run dynamics at constant reaction coordinate to equilibrate system
 dynamics.run(params.n_steps)
