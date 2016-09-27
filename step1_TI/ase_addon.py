@@ -5,7 +5,7 @@ from ase.constraints import FixConstraint
 from ase.utils.geometry import find_mic
 from ase.constraints import Hookean
 
-class GentlyDriftBondLength(FixConstraint):
+class SlowGrowthBondLength(FixConstraint):
     """Constraint object for fixing a bond length."""
     def __init__(self, a1, a2, bond_speed=0., direction=None):
         """Linearly tweak distance between atoms with indices a1 and a2. If mic is
@@ -104,7 +104,7 @@ class GentlyDriftBondLength(FixConstraint):
                 'kwargs': {'a1': self.indices[0], 'a2': self.indices[1]}}
 
 
-# EDITED VERSION OF Hookean CONSTRAINT
+# EDITED VERSION OF Hookean CONSTRAINT (ase.constraint.Hookean)
 def adjust_potential_energy(self, atoms):
     """Returns the difference to the potential energy due to an active                                                                     
     constraint. (That is, the quantity returned is to be added to the                                                                      

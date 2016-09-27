@@ -15,8 +15,8 @@ def write_db(atoms, db_name):
         print("%.5f, %.5f" % (np.abs(d), f), file=db_file)
     return
 
-dist_initial = 3
-dist_final = 7.2
+dist_initial = 3.2
+dist_final = 7.0
 run_forth = True
 run_back = False
 
@@ -24,7 +24,7 @@ other_constraints = at.constraints
 
 if run_forth:
     # ***** Setup constraints *****
-    fix_dist = GentlyDriftBondLength(*params.tipatoms, bond_speed = 0, direction = params.tipatoms)
+    fix_dist = SlowGrowthBondLength(*params.tipatoms, bond_speed = 0, direction = params.tipatoms)
     fix_dist.adjust_direction(at)
 
     # find rate of bond length increase for the current simulation
@@ -59,7 +59,7 @@ if run_forth:
     bondlength_span = dist_final - dist_initial
     n_steps = int(bondlength_span / params.bondlength_speed)
     # ***** Setup constraints *****
-    fix_dist = GentlyDriftBondLength(*params.tipatoms, bond_speed = np.sign(n_steps) * params.bondlength_speed, direction = params.tipatoms)
+    fix_dist = SlowGrowthBondLength(*params.tipatoms, bond_speed = np.sign(n_steps) * params.bondlength_speed, direction = params.tipatoms)
     # apply constraints
     at.set_constraint(other_constraints + [fix_dist])
     
@@ -72,7 +72,7 @@ if run_back:
     bondlength_span = dist_initial - dist_final
     n_steps = int(bondlength_span / params.bondlength_speed)
     # ***** Setup constraints *****
-    fix_dist = GentlyDriftBondLength(*params.tipatoms, bond_speed = np.sign(n_steps) * params.bondlength_speed, direction = params.tipatoms)
+    fix_dist = SlowGrowthBondLength(*params.tipatoms, bond_speed = np.sign(n_steps) * params.bondlength_speed, direction = params.tipatoms)
     # apply constraints
     at.set_constraint(other_constraints + [fix_dist])
     

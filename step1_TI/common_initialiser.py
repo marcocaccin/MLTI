@@ -8,7 +8,7 @@ from ase.md.langevin import Langevin
 from ase.md.velocitydistribution import MaxwellBoltzmannDistribution
 from ase.utils.geometry import find_mic
 
-from ase_addon import GentlyDriftBondLength, Hookean
+from ase_addon import SlowGrowthBondLength, Hookean
 
 import quippy
 from quippy.io import AtomsWriter

@@ -6,12 +6,12 @@ import os
 import numpy as np
 from quippy import AtomsReader
 from ase.utils.geometry import find_mic
-from ase_addon import GentlyDriftBondLength
+from ase_addon import SlowGrowthBondLength
 
 
 def calculate_constraint(at, tipatoms):
     f = at.get_array('force')
-    cnstr = GentlyDriftBondLength(*tipatoms, bond_speed=0., direction=tipatoms)
+    cnstr = SlowGrowthBondLength(*tipatoms, bond_speed=0., direction=tipatoms)
     cnstr.adjust_forces(at, f)
     
     p1, p2 = at.positions[tipatoms]

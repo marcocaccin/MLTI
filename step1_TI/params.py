@@ -2,14 +2,12 @@ import os
 
 import numpy as np
 
-# from ase.atoms import Atoms
-# from ase.io import read, write
 from ase.units import GPa, J, m, kB, fs, Ang
 import quippy 
 from matscipy.neighbours import neighbour_list
 from quippy import Potential
 
-k_spring = 0.35
+k_spring = 1.00
 initial_strain = 0.10
 crack_seed_length = 1./3 # fraction of total length
 strain_ramp_length = 15
